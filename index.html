@@ -4,201 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lovely Angels - Result Checker</title>
-  <style>
-     <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #eef2f3;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .container {
-      background: #fff;
-      border-radius: 12px;
-      padding: 30px 20px;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
-
-    input, button {
-      padding: 10px;
-      width: 90%;
-      margin: 10px 0;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    #resultBox {
-      margin-top: 20px;
-      font-size: 17px;
-      text-align: left;
-    }
-
-    .marks-box {
-      background-color: #f0f0f0;
-      padding: 10px;
-      margin-top: 10px;
-      display: none;
-      border-radius: 6px;
-    }
-
-    .notfound {
-      color: red;
-      font-weight: bold;
-    }
-
-    @media (max-width: 500px) {
-      .container {
-        width: 95%;
-        padding: 20px 15px;
-      }
-
-      input, button {
-        width: 100%;
-      }
-
-      #resultBox {
-        font-size: 16px;
-      }
-    }
-  </style>
+<link rel="icon" type="image/png" href="b.png">
+  <style>*{box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:#eef2f3;margin:0;padding:20px;text-align:center}.container{background:#fff;border-radius:12px;padding:30px 20px;max-width:400px;margin:auto;box-shadow:0 0 15px rgba(0,0,0,0.1)}input,button{padding:10px;width:90%;margin:10px 0;font-size:16px;border:1px solid #ccc;border-radius:6px}button{background-color:#4CAF50;color:white;border:none;cursor:pointer}button:hover{background-color:#45a049}#resultBox{margin-top:20px;font-size:17px;text-align:left}.marks-box{background-color:#f0f0f0;padding:10px;margin-top:10px;display:none;border-radius:6px}.notfound{color:red;font-weight:bold}@media (max-width:500px){.container{width:95%;padding:20px 15px}input,button{width:100%}#resultBox{font-size:16px}}.footer{margin-top:40px;font-size:14px;color:#666}</style>
 </head>
-<body>
+<body oncontextmenu="return false">
   <div class="container">
-    <h2>📘 Students Result Checker LAEBS</h2>
+    <h2>📘Students Result Checker📘 LAEBS</h2>
     <input type="text" id="name" placeholder="Enter Student Name" />
     <input type="text" id="symbol" placeholder="Enter Symbol Number" />
     <button onclick="checkResult()">Check Result</button>
-
     <div id="resultBox"></div>
     <div class="marks-box" id="marksBox"></div>
+    <div class="footer">
+      <hr>
+       Designed by: <strong>Brpmailo</strong><br>
+      ⚡Powered by: <strong>Lovely Angels Eng. B. School</strong>
+    </div>
   </div>
 
+
+
   <script>
-    // 👇 Define full marks only once here
-    const examFullMarks = 20; // 
-
-    const studentResults = [
-      { name: "Aarohi Sharma", symbol: "1", subject: "व्याकरण", marks: 4.5 },
-      { name: "Angat Chaudhary", symbol: "2", subject: "व्याकरण", marks: 6.5 },
-      { name: "Ankit Majhi", symbol: "3", subject: "व्याकरण", marks: 1.5 },
-      { name: "Ankita Poudel", symbol: "4", subject: "व्याकरण", marks: 18.5 },
-      { name: "Anuska Bhandari", symbol: "5", subject: "व्याकरण", marks: 12.5 },
-      { name: "Asmi Rana Magar", symbol: "6", subject: "व्याकरण", marks: 10.5 },
-      { name: "Bandana Niroula", symbol: "7", subject: "व्याकरण", marks: 11.5 },
-      { name: "Hemanta Mehata", symbol: "8", subject: "व्याकरण", marks: 6.5 },
-      { name: "Jenisha Chaudhary", symbol: "9", subject: "व्याकरण", marks: 10 },
-      { name: "Kelina Dhakal", symbol: "10", subject: "व्याकरण", marks: 12 },
-      { name: "Khushi Khadka", symbol: "11", subject: "व्याकरण", marks: 15.5 },
-      { name: "Manoj B.K", symbol: "12", subject: "व्याकरण", marks: 4 },
-      { name: "Namrata Chaudhary", symbol: "13", subject: "व्याकरण", marks: 11.5 },
-      { name: "Prakriti Pradhan", symbol: "14", subject: "व्याकरण", marks: 4.5 },
-      { name: "Pramisha Khawas", symbol: "15", subject: "व्याकरण", marks: 9 },
-      { name: "Rakesh Khawas", symbol: "16", subject: "व्याकरण", marks: 12.5 },
-      { name: "Rohan Baral", symbol: "17", subject: "व्याकरण", marks: 7 },
-      { name: "Sandesh Regmi", symbol: "18", subject: "व्याकरण", marks: 11.5 },
-      { name: "Simran B.K", symbol: "19", subject: "व्याकरण", marks: 9 },
-      { name: "Smriti Khawas", symbol: "20", subject: "व्याकरण", marks: 12.5 },
-      { name: "Smriti Majhi", symbol: "21", subject: "व्याकरण", marks: 4 },
-      { name: "Sudip Karki", symbol: "22", subject: "व्याकरण", marks: 10 },
-      { name: "Supreshna Gautam", symbol: "23", subject: "व्याकरण", marks: 11 },
-      { name: "Upendra Shrestha", symbol: "24", subject: "व्याकरण", marks: 8.5 },
-      { name: "Prience Shah", symbol: "25", subject: "व्याकरण", marks: 15.5 },
-    ];
-
-
-
-
-   function getGrade(percentage) {
-      if (percentage >= 90) return "A+";
-      else if (percentage >= 80) return "A";
-      else if (percentage >= 70) return "B+";
-      else if (percentage >= 60) return "B";
-      else if (percentage >= 50) return "C+";
-      else if (percentage >= 40) return "C";
-      else if (percentage >= 35) return "D";
-      else return "NG";
-    }
-
-    function getRemarks(grade) {
-      switch (grade) {
-        case "A+": return "Excellent / पढाइ, बुझाइ र सिकाइ अति उत्तम छ यस्तै प्रगति गर्दै जानु शुभकामना !";
-        case "A": return "Very Good / पढाइ, बुझाइ र सिकाइ धेरै राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";
-        case "B+": return "Good / पढाइ, बुझाइ र सिकाइ राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";
-        case "B": return "Satisfactory / पढाइ, बुझाइ र सिकाइ सन्तोषजनक छ अझै मिहिनेत गरेर सुधार गर्दै जानु शुभकामना !"; 
-        case "C+": return "Average / पढाइ, बुझाइ र सिकाइ ठिक्कै मात्र राम्रो छ सुधार गर्नुपर्ने धेरै छन् अझै मिहिनेत गर्दै जानु";
-        case "C": return "Below Average / पढाइ, बुझाइ र सिकाइ अलिक कमजोर छ अझै धेरै सुधार गर्नुपर्ने भएकाले मिहिनेत गर्दै जानु";
-        case "D": return "Weak / पढाइ, बुझाइ र सिकाइ निक्कै कमजोर देखिएको हुँदा कक्षामा ध्यान दिने र मिहिनेत गर्दै जाँदा सुधार हुन्दैजान्छ";
-        default: return "Needs Improvement / पढाइ, बुझाइ र सिकाइ अत्यन्तै कमजोर भएकाले पढाइको धेरै भन्दा धेरै जरुरी छ मिहिनेतका साथ अध्ययन गर्नुपर्छ";
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || 
+         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+         (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        alert("This action is disabled 🔒");
       }
-    }
+    });
+  </script>
 
-    function checkResult() {
-      const name = document.getElementById("name").value.trim();
-      const symbol = document.getElementById("symbol").value.trim();
-      const resultBox = document.getElementById("resultBox");
-      const marksBox = document.getElementById("marksBox");
 
-      const student = studentResults.find(s =>
-        s.name.toLowerCase() === name.toLowerCase() &&
-        s.symbol === symbol
-      );
 
-      if (student) {
-        const percentage = (student.marks / examFullMarks) * 100;
-        const grade = getGrade(percentage);
-        const remarks = getRemarks(grade);
+  <script>
+    const examFullMarks=20,studentResults=[
+{name:"Aarohi Sharma",class:"7",symbol:"1",subject:"व्याकरण",marks:4.5},
+{name:"Angat Chaudhary",class:"7",symbol:"2",subject:"व्याकरण",marks:6.5},
+{name:"Ankit Majhi",class:"7",symbol:"3",subject:"व्याकरण",marks:1.5},
+{name:"Ankita Poudel",class:"7",symbol:"4",subject:"व्याकरण",marks:18.5},
+{name:"Anuska Bhandari",class:"7",symbol:"5",subject:"व्याकरण",marks:12.5},
+{name:"Asmi Rana Magar",class:"7",symbol:"6",subject:"व्याकरण",marks:10.5},
+{name:"Bandana Niroula",class:"7",symbol:"7",subject:"व्याकरण",marks:11.5},
+{name:"Hemanta Mehata",class:"7",symbol:"8",subject:"व्याकरण",marks:6.5},
+{name:"Jenisha Chaudhary",class:"7",symbol:"9",subject:"व्याकरण",marks:10},
+{name:"Kelina Dhakal",class:"7",symbol:"10",subject:"व्याकरण",marks:12},
+{name:"Khushi Khadka",class:"7",symbol:"11",subject:"व्याकरण",marks:15.5},
+{name:"Manoj B.K",class:"7",symbol:"12",subject:"व्याकरण",marks:4},
+{name:"Namrata Chaudhary",class:"7",symbol:"13",subject:"व्याकरण",marks:11.5},
+{name:"Prakriti Pradhan",class:"7",symbol:"14",subject:"व्याकरण",marks:4.5},
+{name:"Pramisha Khawas",class:"7",symbol:"15",subject:"व्याकरण",marks:9},
+{name:"Rakesh Khawas",class:"7",symbol:"16",subject:"व्याकरण",marks:12.5},
+{name:"Rohan Baral",class:"7",symbol:"17",subject:"व्याकरण",marks:7},
+{name:"Sandesh Regmi",class:"7",symbol:"18",subject:"व्याकरण",marks:11.5},
+{name:"Simran B.K",class:"7",symbol:"19",subject:"व्याकरण",marks:9},
+{name:"Smriti Khawas",class:"7",symbol:"20",subject:"व्याकरण",marks:12.5},
+{name:"Smriti Majhi",class:"7",symbol:"21",subject:"व्याकरण",marks:4},
+{name:"Sudip Karki",class:"7",symbol:"22",subject:"व्याकरण",marks:10},
+{name:"Supreshna Gautam",class:"7",symbol:"23",subject:"व्याकरण",marks:11},
+{name:"Upendra Shrestha",class:"7",symbol:"24",subject:"व्याकरण",marks:8.5},
+{name:"Prience Shah",class:"7",symbol:"25",subject:"व्याकरण",marks:15.5}];
 
-        if (grade === "NG") {
-          resultBox.innerHTML = `
-            <strong>Student:</strong> ${student.name} <br>
-            <strong>Symbol No:</strong> ${student.symbol} <br>
-            <strong>Subject:</strong> ${student.subject} <br>
-            <strong>Grade:</strong> ${grade} <br><br>
-            <strong>Remarks:</strong> ${remarks} <br><br>
-            <span style='color:red;'>❌पढाइ पुगेको छैन निक्कै मिहिनेत गरेर अर्को पटक पास गर्ने</span>`;
-          marksBox.style.display = "none";
-        } else {
-          resultBox.innerHTML = `
-            <strong>Student:</strong> ${student.name} <br>
-            <strong>Symbol No:</strong> ${student.symbol} <br>
-            <strong>Subject:</strong> ${student.subject} <br>
-            <strong>Grade:</strong> ${grade} <br><br>
-            <strong>Remarks:</strong> ${remarks} <br>
-            <button onclick='viewMarks(${student.marks})'>📑View Your Marks</button>`;
-          marksBox.style.display = "none";
-          marksBox.innerHTML = "";
-        }
-      } else {
-        resultBox.innerHTML = "<span class='notfound'>❌Student not found. Please check name and symbol no.</span>";
-        marksBox.style.display = "none";
-      }
-    }
 
-    function viewMarks(marks) {
-      const marksBox = document.getElementById("marksBox");
-      marksBox.innerHTML = `<h4>📑 Marks Obtained:</h4><strong>${marks} / ${examFullMarks}</strong>`;
-      marksBox.style.display = "block";
-    }
+
+
+    function getGrade(e){return e>=90?"A+":e>=80?"A":e>=70?"B+":e>=60?"B":e>=50?"C+":e>=40?"C":e>=35?"D":"NG"}
+    function getRemarks(e){switch(e){case"A+":return"Excellent / पढाइ, बुझाइ र सिकाइ अति उत्तम छ यस्तै प्रगति गर्दै जानु शुभकामना !";case"A":return"Very Good / पढाइ, बुझाइ र सिकाइ धेरै राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";case"B+":return"Good / पढाइ, बुझाइ र सिकाइ राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";case"B":return"Satisfactory / पढाइ, बुझाइ र सिकाइ सन्तोषजनक छ अझै मिहिनेत गरेर सुधार गर्दै जानु शुभकामना !";case"C+":return"Average / पढाइ, बुझाइ र सिकाइ ठिक्कै मात्र राम्रो छ सुधार गर्नुपर्ने धेरै छन् अझै मिहिनेत गर्दै जानु";case"C":return"Below Average / पढाइ, बुझाइ र सिकाइ अलिक कमजोर छ अझै धेरै सुधार गर्नुपर्ने भएकाले मिहिनेत गर्दै जानु";case"D":return"Weak / पढाइ, बुझाइ र सिकाइ निक्कै कमजोर देखिएको हुँदा कक्षामा ध्यान दिने र मिहिनेत गर्दै जाँदा सुधार हुन्दैजान्छ";default:return"Needs Improvement / पढाइ, बुझाइ र सिकाइ अत्यन्तै कमजोर भएकाले पढाइको धेरै भन्दा धेरै जरुरी छ मिहिनेतका साथ अध्ययन गर्नुपर्छ"}}
+    function checkResult(){const e=document.getElementById("name").value.trim(),t=document.getElementById("symbol").value.trim(),n=document.getElementById("resultBox"),a=document.getElementById("marksBox"),r=studentResults.find(t=>t.name.toLowerCase()===e.toLowerCase()&&t.symbol===t.symbol);if(r){const e=r.marks/examFullMarks*100,t=getGrade(e),o=getRemarks(t);"NG"===t?(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><br><span style='color:red;'>❌पढाइ पुगेको छैन निक्कै मिहिनेत गरेर अर्को पटक पास गर्ने</span>`,a.style.display="none"):(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><button onclick='viewMarks(${r.marks})'>📑View Your Marks</button>`,a.style.display="none",a.innerHTML="")}else n.innerHTML="<span class='notfound'>❌Student not found. Please check name and symbol no.</span>",a.style.display="none"}
+    function viewMarks(e){const t=document.getElementById("marksBox");t.innerHTML=`<h4>📑 Marks Obtained:</h4><strong>${e} / ${examFullMarks}</strong>`,t.style.display="block"}
   </script>
 </body>
 </html>
