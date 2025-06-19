@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lovely Angels - Result Checker</title>
+<link rel="icon" type="image/png" href="b.png">
+  <style>*{box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:#eef2f3;margin:0;padding:20px;text-align:center}.container{background:#fff;border-radius:12px;padding:30px 20px;max-width:400px;margin:auto;box-shadow:0 0 15px rgba(0,0,0,0.1)}input,button{padding:10px;width:90%;margin:10px 0;font-size:16px;border:1px solid #ccc;border-radius:6px}button{background-color:#4CAF50;color:white;border:none;cursor:pointer}button:hover{background-color:#45a049}#resultBox{margin-top:20px;font-size:17px;text-align:left}.marks-box{background-color:#f0f0f0;padding:10px;margin-top:10px;display:none;border-radius:6px}.notfound{color:red;font-weight:bold}@media (max-width:500px){.container{width:95%;padding:20px 15px}input,button{width:100%}#resultBox{font-size:16px}}.footer{margin-top:40px;font-size:14px;color:#666}</style>
+</head>
+<body oncontextmenu="return false">
+  <div class="container">
+    <h2>📘Students Result Checker📘 LAEBS</h2>
+    <input type="text" id="name" placeholder="Enter Student Name" />
+    <input type="text" id="symbol" placeholder="Enter Symbol Number" />
+    <button onclick="checkResult()">Check Result</button>
+    <div id="resultBox"></div>
+    <div class="marks-box" id="marksBox"></div>
+    <div class="footer">
+      <hr>
+       Designed by: <strong>Brpmailo</strong><br>
+      ⚡Powered by: <strong>Lovely Angels Eng. B. School</strong>
+    </div>
+  </div>
+
+
+
+  <script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || 
+         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+         (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        alert("This action is disabled 🔒");
+      }
+    });
+  </script>
+
+
+
+  <script>
+    const examFullMarks=20,studentResults=[
+{name:"Aarohi Sharma",class:"7",symbol:"1",subject:"व्याकरण",marks:4.5},
+{name:"Angat Chaudhary",class:"7",symbol:"2",subject:"व्याकरण",marks:6.5},
+{name:"Ankit Majhi",class:"7",symbol:"3",subject:"व्याकरण",marks:1.5},
+{name:"Ankita Poudel",class:"7",symbol:"4",subject:"व्याकरण",marks:18.5},
+{name:"Anuska Bhandari",class:"7",symbol:"5",subject:"व्याकरण",marks:12.5},
+{name:"Asmi Rana Magar",class:"7",symbol:"6",subject:"व्याकरण",marks:10.5},
+{name:"Bandana Niroula",class:"7",symbol:"7",subject:"व्याकरण",marks:11.5},
+{name:"Hemanta Mehata",class:"7",symbol:"8",subject:"व्याकरण",marks:6.5},
+{name:"Jenisha Chaudhary",class:"7",symbol:"9",subject:"व्याकरण",marks:10},
+{name:"Kelina Dhakal",class:"7",symbol:"10",subject:"व्याकरण",marks:12},
+{name:"Khushi Khadka",class:"7",symbol:"11",subject:"व्याकरण",marks:15.5},
+{name:"Manoj B.K",class:"7",symbol:"12",subject:"व्याकरण",marks:4},
+{name:"Namrata Chaudhary",class:"7",symbol:"13",subject:"व्याकरण",marks:11.5},
+{name:"Prakriti Pradhan",class:"7",symbol:"14",subject:"व्याकरण",marks:4.5},
+{name:"Pramisha Khawas",class:"7",symbol:"15",subject:"व्याकरण",marks:9},
+{name:"Rakesh Khawas",class:"7",symbol:"16",subject:"व्याकरण",marks:12.5},
+{name:"Rohan Baral",class:"7",symbol:"17",subject:"व्याकरण",marks:7},
+{name:"Sandesh Regmi",class:"7",symbol:"18",subject:"व्याकरण",marks:11.5},
+{name:"Simran B.K",class:"7",symbol:"19",subject:"व्याकरण",marks:9},
+{name:"Smriti Khawas",class:"7",symbol:"20",subject:"व्याकरण",marks:12.5},
+{name:"Smriti Majhi",class:"7",symbol:"21",subject:"व्याकरण",marks:4},
+{name:"Sudip Karki",class:"7",symbol:"22",subject:"व्याकरण",marks:10},
+{name:"Supreshna Gautam",class:"7",symbol:"23",subject:"व्याकरण",marks:11},
+{name:"Upendra Shrestha",class:"7",symbol:"24",subject:"व्याकरण",marks:8.5},
+{name:"Prince Shah",class:"7",symbol:"25",subject:"व्याकरण",marks:15.5},
+
+  { name: "Aaditya Acharya", class: "7", symbol: "1", subject: "व्याकरण", marks: 8 },
+  { name: "Aakash Bhagat", class: "7", symbol: "2", subject: "व्याकरण", marks: 13 },
+  { name: "Aasma Bhagat", class: "7", symbol: "3", subject: "व्याकरण", marks: 5.5 },
+  { name: "Aayush Thandar", class: "7", symbol: "4", subject: "व्याकरण", marks: 12 },
+  { name: "Ajaya Kumar Thakur", class: "7", symbol: "5", subject: "व्याकरण", marks: 10.5 },
+  { name: "Anuska Karki", class: "7", symbol: "6", subject: "व्याकरण", marks: 18 },
+  { name: "Bashant Majhi", class: "7", symbol: "7", subject: "व्याकरण", marks: 11 },
+  { name: "Chiranjivi Upadhaya", class: "7", symbol: "8", subject: "व्याकरण", marks: 11.5 },
+  { name: "Hangma Limbu", class: "7", symbol: "9", subject: "व्याकरण", marks: 8.5 },
+  { name: "Hardik Khadka", class: "7", symbol: "10", subject: "व्याकरण", marks: 2.5 },
+  { name: "Kanchan Pradhan", class: "7", symbol: "11", subject: "व्याकरण", marks: 8.5 },
+  { name: "Mansoon Rai", class: "7", symbol: "12", subject: "व्याकरण", marks: 11.5 },
+  { name: "Nabina Chemjong", class: "7", symbol: "13", subject: "व्याकरण", marks: 16 },
+  { name: "Naina Shah", class: "7", symbol: "14", subject: "व्याकरण", marks: 11.5 },
+  { name: "Nikesh Kharel", class: "7", symbol: "15", subject: "व्याकरण", marks: 7.5 },
+  { name: "Pranay Sikdar", class: "7", symbol: "16", subject: "व्याकरण", marks: 7 },
+  { name: "Pratik Shah", class: "7", symbol: "17", subject: "व्याकरण", marks: 14 },
+  { name: "Prijana Dulal", class: "7", symbol: "18", subject: "व्याकरण", marks: 18.5 },
+  { name: "Prince Chaudhary", class: "7", symbol: "19", subject: "व्याकरण", marks: 2 },
+  { name: "Rewan Khadka", class: "7", symbol: "20", subject: "व्याकरण", marks: 14.5 },
+  { name: "Shreeya Ghimire", class: "7", symbol: "21", subject: "व्याकरण", marks: 7.5 },
+  { name: "Simran Dangi", class: "7", symbol: "22", subject: "व्याकरण", marks: 16 },
+  { name: "Solabh Khawas", class: "7", symbol: "23", subject: "व्याकरण", marks: 11.5 },
+  { name: "Sonakshi Dutta", class: "7", symbol: "24", subject: "व्याकरण", marks: 17.5 },
+  { name: "Utsab Thakur", class: "7", symbol: "25", subject: "व्याकरण", marks: 9.5 },
+  { name: "Yunika Shrestha", class: "7", symbol: "26", subject: "व्याकरण", marks: 15.5 }];
+
+
+
+    function getGrade(e){return e>=90?"A+":e>=80?"A":e>=70?"B+":e>=60?"B":e>=50?"C+":e>=40?"C":e>=35?"D":"NG"}
+    function getRemarks(e){switch(e){case"A+":return"Excellent / पढाइ, बुझाइ र सिकाइ अति उत्तम छ यस्तै प्रगति गर्दै जानु शुभकामना !";case"A":return"Very Good / पढाइ, बुझाइ र सिकाइ धेरै राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";case"B+":return"Good / पढाइ, बुझाइ र सिकाइ राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";case"B":return"Satisfactory / पढाइ, बुझाइ र सिकाइ सन्तोषजनक छ अझै मिहिनेत गरेर सुधार गर्दै जानु शुभकामना !";case"C+":return"Average / पढाइ, बुझाइ र सिकाइ ठिक्कै मात्र राम्रो छ सुधार गर्नुपर्ने धेरै छन् अझै मिहिनेत गर्दै जानु";case"C":return"Below Average / पढाइ, बुझाइ र सिकाइ अलिक कमजोर छ अझै धेरै सुधार गर्नुपर्ने भएकाले मिहिनेत गर्दै जानु";case"D":return"Weak / पढाइ, बुझाइ र सिकाइ निक्कै कमजोर देखिएको हुँदा कक्षामा ध्यान दिने र मिहिनेत गर्दै जाँदा सुधार हुन्दैजान्छ";default:return"Needs Improvement / पढाइ, बुझाइ र सिकाइ अत्यन्तै कमजोर भएकाले पढाइको धेरै भन्दा धेरै जरुरी छ मिहिनेतका साथ अध्ययन गर्नुपर्छ"}}
+    function checkResult(){const e=document.getElementById("name").value.trim(),t=document.getElementById("symbol").value.trim(),n=document.getElementById("resultBox"),a=document.getElementById("marksBox"),r=studentResults.find(t=>t.name.toLowerCase()===e.toLowerCase()&&t.symbol===t.symbol);if(r){const e=r.marks/examFullMarks*100,t=getGrade(e),o=getRemarks(t);"NG"===t?(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><br><span style='color:red;'>❌पढाइ पुगेको छैन निक्कै मिहिनेत गरेर अर्को पटक पास गर्ने</span>`,a.style.display="none"):(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><button onclick='viewMarks(${r.marks})'>📑View Your Marks</button>`,a.style.display="none",a.innerHTML="")}else n.innerHTML="<span class='notfound'>❌Student not found. Please check name and symbol no.</span>",a.style.display="none"}
+    function viewMarks(e){const t=document.getElementById("marksBox");t.innerHTML=`<h4>📑 Marks Obtained:</h4><strong>${e} / ${examFullMarks}</strong>`,t.style.display="block"}
+  </script>
+</body>
+</html>
