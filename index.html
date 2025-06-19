@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lovely-Angels</title>
-	<link rel="icon" type="image/png" href="b.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
@@ -59,8 +59,8 @@
       background: #fff;
     }
 
-    .courses, .class-type {
-      max-width: 400px;
+    .courses, .features {
+      flex: 1 1 300px;
       margin: 20px;
     }
 
@@ -79,31 +79,53 @@
       font-weight: bold;
     }
 
-    .class-type span {
+    .features h2 {
+      text-align: center;
+    }
+
+    .features span {
       display: inline-block;
-      margin-right: 10px;
-      padding: 5px 10px;
+      margin: 6px;
+      padding: 6px 12px;
       border-radius: 5px;
       font-weight: bold;
     }
 
-    .online { background: green; color: white; }
-   .coaching { background: blue; color: white; }
-   .tuition { background: red; color: white; }
-    .physical { background: #ffe5e5; color: #c62828; }
 
+
+
+
+    .online { background: green; color: white; }
+    .coaching { background: blue; color: white; }
+    .tuition { background: red; color: white; }
+    .care { background: #ff9900; color: white; }
+    .smart { background: #00cc66; color: white; }
+    .pre { background: #ff0066; color: white; }
+    .teach { background: #00b3b3; color: white; }
+    .physical { background: white; color: #c62828; border: 1px solid #c62828; }
+
+
+
+
+
+    @media (max-width: 768px) {
+      .features h2 {
+        text-align: left;
+      }
+    }
 
     .footer {
-      background: #003d99;
+      background: #001F54;
       padding: 20px;
       text-align: center;
       font-size: 14px;
       color: white;
+      line-height: 1.8em;
     }
 
-    .footer span {
-      margin: 0 10px;
-      display: block;
+    .footer i {
+      margin-right: 6px;
+      color: #FFB800;
     }
 
     .tags {
@@ -126,7 +148,7 @@
     }
 
     .photo img {
-      width: 300px;
+      width: 350px;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
@@ -139,8 +161,10 @@
   <div class="header">
     <h1>LOVELY ANGELS ENGLISH SCHOOL</h1>
     <div class="subtitle">"Education is the light through which each individuals is guided"</div>
-   <a href="result.html" class="enroll-box" target="_blank">Check Your Result</a>
+    <a href="result.html" class="enroll-box" target="_blank">Check Your Result</a>
   </div>
+
+
 
 
 
@@ -159,51 +183,67 @@
       </ul>
     </div>
 
-
-    <div class="class-type">
-      <h2>Class Available</h2>
-      <span class="online">Physical</span>
+  
 
 
- <div class="class-type">
-      <span class="coaching">Daily Coaching Classes</span>
 
- <div class="class-type">
+    <div class="features">
+      <h2>Our Features</h2>
+      <span class="online">Montessori-Based Pre-Classes</span>
+      <span class="coaching">Smart Learning Approach</span>
       <span class="tuition">Available Tuition Classes</span>
-
-      <span class="physical">
-📚 Guided by Experienced Teachers
-Our classes are led by experienced and skilled teachers who provide personalized guidance based on each student’s learning pace and needs.
-<br><br>🖥️ Smart Teaching Methods
-We use smart boards and modern teaching tools to make learning more interactive, engaging, and effective for all students.
-
- </span>
-          </div> 
- 	     </div> 
-		 </div>
+      <span class="care">Daily Coaching Classes</span>
+      <span class="teach">Smart Computer Lab</span>
+      <span class="pre">Special Student Care</span>
+      <span class="smart">Available Dance Classes</span>
+      <span class="physical">Guided by Experienced Teachers</span>
+    </div>
 
 
 
-    <div class="photo">
+
+
+
+
+   <div class="photo">
       <img src="a.jpg" alt="Student Coding">
     </div>
+  </div> 
+
+
+
+  <!-- Footer Section -->
+  <div class="footer">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: center; margin-bottom: 10px;">     
+      <div><i class="fas fa-envelope"></i> lovelyangelsschool458@gmail.com</div>
+
+
+		<div><i class="fas fa-phone-alt"></i> +977-9809323345</div>
+ 			<div>
+ 				       <i class="fas fa-globe"></i>
+  				      <a href="https://www.lovelyangelsschool.edu.np" 
+ 				          style="color: white; text-decoration: underline;" target="_blank"> www.lovelyangelsschool.edu.np
+					        </a>
+						      </div>
+							    </div>
+		
+
+
+
+
+
+
+    <hr style="border: 0.5px solid rgba(255,255,255,0.2); width: 90%; margin: 10px auto;">
+
+    <div style="font-size: 16px; margin-top: 10px;">
+      &copy; 2082 Lovely Angels School. All Rights Reserved. |
+      <i class="fas fa-paint-brush"></i>
+      Designed by 
+      <a href="https://baburamphuyal.com.np" target="_blank" style="color: #FFD700; font-weight: bold; text-decoration: none;">
+        Brpmailo
+      </a>
+    </div>
   </div>
-
-
-
-  <div class="tags">
-    <span>Special Student Care</span>
-    <span>Smart Learning Approach</span>
-    <span>Montessori-Based Pre-Classes</span>
-  </div>  </div>
-
-
-
- <div class="footer">
-  <span><strong>Contact:</strong> +977-9809323345</span>
-  <span><strong>Email:</strong> lovelyangelsschool458@gmail.com</span>
-  <span><strong>Website:</strong> <a href="https://www.lovelyangelsschool.edu.np" style="color: white; text-decoration: underline;" target="_blank">www.lovelyangelsschool.edu.np</a></span>
-</div>
 
 
 </body>
