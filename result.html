@@ -98,6 +98,266 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,7 +395,21 @@
     });
   </script>
 
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
 
+        // Disable F12, Ctrl+Shift+I, Ctrl+U
+        document.onkeydown = function (e) {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+                (e.ctrlKey && e.keyCode === 85)) {
+                return false;
+            }
+        }
+    </script>
 
   <script>
     const examFullMarks=20,studentResults=[
@@ -196,8 +470,55 @@
 
     function getGrade(e){return e>=90?"A+":e>=80?"A":e>=70?"B+":e>=60?"B":e>=50?"C+":e>=40?"C":e>=35?"D":"NG"}
     function getRemarks(e){switch(e){case"A+":return"Excellent / पढाइ, बुझाइ र सिकाइ अति उत्तम छ यस्तै प्रगति गर्दै जानु शुभकामना !";case"A":return"Very Good / पढाइ, बुझाइ र सिकाइ धेरै राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";case"B+":return"Good / पढाइ, बुझाइ र सिकाइ राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";case"B":return"Satisfactory / पढाइ, बुझाइ र सिकाइ सन्तोषजनक छ अझै मिहिनेत गरेर सुधार गर्दै जानु शुभकामना !";case"C+":return"Average / पढाइ, बुझाइ र सिकाइ ठिक्कै मात्र राम्रो छ सुधार गर्नुपर्ने धेरै छन् अझै मिहिनेत गर्दै जानु";case"C":return"Below Average / पढाइ, बुझाइ र सिकाइ अलिक कमजोर छ अझै धेरै सुधार गर्नुपर्ने भएकाले मिहिनेत गर्दै जानु";case"D":return"Weak / पढाइ, बुझाइ र सिकाइ निक्कै कमजोर देखिएको हुँदा कक्षामा ध्यान दिने र मिहिनेत गर्दै जाँदा सुधार हुन्दैजान्छ";default:return"Needs Improvement / पढाइ, बुझाइ र सिकाइ अत्यन्तै कमजोर भएकाले पढाइको धेरै भन्दा धेरै जरुरी छ मिहिनेतका साथ अध्ययन गर्नुपर्छ"}}
-    function checkResult(){const e=document.getElementById("name").value.trim(),t=document.getElementById("symbol").value.trim(),n=document.getElementById("resultBox"),a=document.getElementById("marksBox"),r=studentResults.find(t=>t.name.toLowerCase()===e.toLowerCase()&&t.symbol===t.symbol);if(r){const e=r.marks/examFullMarks*100,t=getGrade(e),o=getRemarks(t);"NG"===t?(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><br><span style='color:red;'>"जो पढ़छ उही अघि बढ्छ" तिमी पनि मिहिनेत गरेर पढ अर्को पटक अवस्य सफल हुन्छौ </span>`,a.style.display="none"):(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><button onclick='viewMarks(${r.marks})'>📑View Your Marks</button>`,a.style.display="none",a.innerHTML="")}else n.innerHTML="<span class='notfound'>❌Student not found. Please check name and symbol no.</span>",a.style.display="none"}
+    function checkResult(){const e=document.getElementById("name").value.trim(),t=document.getElementById("symbol").value.trim(),n=document.getElementById("resultBox"),a=document.getElementById("marksBox"),r=studentResults.find(t=>t.name.toLowerCase()===e.toLowerCase()&&t.symbol===t.symbol);if(r){const e=r.marks/examFullMarks*100,t=getGrade(e),o=getRemarks(t);"NG"===t?(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><br><span style='color:red;'>❌पढाइ पुगेको छैन निक्कै मिहिनेत गरेर अर्को पटक पास गर्ने</span>`,a.style.display="none"):(n.innerHTML=`<strong>Student:</strong> ${r.name} <br><strong>Class:</strong> ${r.class} <br><strong>Symbol No:</strong> ${r.symbol} <br><strong>Subject:</strong> ${r.subject} <br><strong>Grade:</strong> ${t} <br><br><strong>Remarks:</strong> ${o} <br><button onclick='viewMarks(${r.marks})'>📑View Your Marks</button>`,a.style.display="none",a.innerHTML="")}else n.innerHTML="<span class='notfound'>❌Student not found. Please check name and symbol no.</span>",a.style.display="none"}
     function viewMarks(e){const t=document.getElementById("marksBox");t.innerHTML=`<h4>📑 Marks Obtained:</h4><strong>${e} / ${examFullMarks}</strong>`,t.style.display="block"}
+
+
+
+<script>
+
+document.addEventListener('keydown', function(e) {
+
+    if (e.keyCode == 123) {
+        e.preventDefault();
+    }
+ 
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 67) {
+        e.preventDefault();
+    }
+  
+    if (e.ctrlKey && e.keyCode == 85) {
+        e.preventDefault();
+    }
+ 
+    if (e.ctrlKey && e.keyCode == 83) {
+        e.preventDefault();
+    }
+});
+
+
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+</script>
+
+
+
+
+
+
+
+
+
+
   </script>
 </body>
 </html>
