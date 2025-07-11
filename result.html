@@ -384,32 +384,7 @@
 
 
 
-  <script>
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' || 
-         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-         (e.ctrlKey && e.key === 'U')) {
-        e.preventDefault();
-        alert("This action is disabled 🔒");
-      }
-    });
-  </script>
 
-    <script>
-        // Disable right-click context menu
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-
-        // Disable F12, Ctrl+Shift+I, Ctrl+U
-        document.onkeydown = function (e) {
-            if (e.keyCode === 123 || 
-                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
-                (e.ctrlKey && e.keyCode === 85)) {
-                return false;
-            }
-        }
-    </script>
 
   <script>
     const examFullMarks=20,studentResults=[
