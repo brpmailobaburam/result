@@ -22,7 +22,7 @@
       margin: auto;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
-    input, button {
+    input, button, select {
       padding: 10px;
       width: 90%;
       margin: 10px 0;
@@ -36,9 +36,7 @@
       border: none;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #45a049;
-    }
+    button:hover { background-color: #45a049; }
     #resultBox {
       margin-top: 20px;
       font-size: 17px;
@@ -51,21 +49,11 @@
       display: none;
       border-radius: 6px;
     }
-    .notfound {
-      color: red;
-      font-weight: bold;
-    }
+    .notfound { color: red; font-weight: bold; }
     @media (max-width: 500px) {
-      .container {
-        width: 95%;
-        padding: 20px 15px;
-      }
-      input, button {
-        width: 100%;
-      }
-      #resultBox {
-        font-size: 16px;
-      }
+      .container { width: 95%; padding: 20px 15px; }
+      input, button, select { width: 100%; }
+      #resultBox { font-size: 16px; }
     }
     .footer {
       margin-top: 40px;
@@ -80,22 +68,32 @@
     <h2>📘Students Result Checker📘 LAEBS</h2>
     <input type="text" id="name" placeholder="Enter Student Name" />
     <input type="text" id="symbol" placeholder="Enter Symbol Number" />
+    <select id="examSelect"></select>
     <button onclick="checkResult()">Check Result</button>
     <div id="resultBox"></div>
     <div class="marks-box" id="marksBox"></div>
+  
+
   <div class="footer">
-  <hr>
-  Designed by: <strong>
-    <a href="https://brp.baburamphuyal.com.np" target="_blank" style="color: blue; text-decoration: none;">Brpmailo</a>
-  </strong><br>
-  ⚡Powered by: <strong>Lovely Angels Eng. B. School</strong>
-</div>
+      <hr>
+      Designed by: <strong>
+        <a href="https://brp.baburamphuyal.com.np" target="_blank" style="color: blue; text-decoration: none;">Brpmailo</a>
+      </strong><br>
+      ⚡Powered by: <strong>Lovely Angels Eng. B. School</strong>
+    </div>
   </div>
 
-  <script>
-    const examFullMarks = 20;
 
-    const studentResults = [
+
+
+
+  <script>
+    // Exam-wise data
+    const examResults = {
+      "First Term Test": {
+        fullMarks: 20,
+        students: [
+
 {name:"Aarohi Sharma",class:"7",symbol:"b1",subject:"व्याकरण",marks:4.5},
 {name:"Angat Chaudhary",class:"7",symbol:"b2",subject:"व्याकरण",marks:6.5},
 {name:"Ankit Majhi",class:"7",symbol:"b3",subject:"व्याकरण",marks:1.5},
@@ -148,7 +146,66 @@
   { name: "Solabh Khawas", class: "7", symbol: "j23", subject: "व्याकरण", marks: 11.5 },
   { name: "Sonakshi Dutta", class: "7", symbol: "j24", subject: "व्याकरण", marks: 17.5 },
   { name: "Utsab Thakur", class: "7", symbol: "j25", subject: "व्याकरण", marks: 9.5 },
-  { name: "Yunika Shrestha", class: "7", symbol: "j26", subject: "व्याकरण", marks: 15.5 }];
+  { name: "Yunika Shrestha", class: "7", symbol: "j26", subject: "व्याकरण", marks: 15.5 }
+       
+        ]
+      },
+
+
+
+
+
+      "Second Term Test": {
+        fullMarks: 30,
+        students: [
+       {name:"Aarohi Sharma",class:"7",symbol:"B1",subject:"व्याकरण",marks:4.5},
+{name:"Angat Chaudhary",class:"7",symbol:"B2",subject:"व्याकरण",marks:6.5},
+{name:"Ankit Majhi",class:"7",symbol:"B3",subject:"व्याकरण",marks:1},
+{name:"Ankita Poudel",class:"7",symbol:"B4",subject:"व्याकरण",marks:25},
+{name:"Anuska Bhandari",class:"7",symbol:"B5",subject:"व्याकरण",marks:16},
+{name:"Asmi Rana Magar",class:"7",symbol:"B6",subject:"व्याकरण",marks:11.5},
+{name:"Bandana Niroula",class:"7",symbol:"B7",subject:"व्याकरण",marks:17.5},
+{name:"Hemanta Mehata",class:"7",symbol:"B8",subject:"व्याकरण",marks:9},
+{name:"Jenisha Chaudhary",class:"7",symbol:"B9",subject:"व्याकरण",marks:11.5},
+{name:"Kelina Dhakal",class:"7",symbol:"B10",subject:"व्याकरण",marks:12.5},
+{name:"Khushi Khadka",class:"7",symbol:"B11",subject:"व्याकरण",marks:15},
+{name:"Manoj B.K",class:"7",symbol:"B12",subject:"व्याकरण",marks:7},
+{name:"Namrata Chaudhary",class:"7",symbol:"B13",subject:"व्याकरण",marks:14.5},
+{name:"Prakriti Pradhan",class:"7",symbol:"B14",subject:"व्याकरण",marks:3.5},
+{name:"Pramisha Khawas",class:"7",symbol:"B15",subject:"व्याकरण",marks:11},
+{name:"Rakesh Khawas",class:"7",symbol:"B16",subject:"व्याकरण",marks:16.5},
+{name:"Rohan Baral",class:"7",symbol:"B17",subject:"व्याकरण",marks:6.5},
+{name:"Sandesh Regmi",class:"7",symbol:"B18",subject:"व्याकरण",marks:19.5},
+{name:"Simran B.K",class:"7",symbol:"B19",subject:"व्याकरण",marks:7},
+{name:"Smriti Khawas",class:"7",symbol:"B20",subject:"व्याकरण",marks:15.5},
+{name:"Smriti Majhi",class:"7",symbol:"B21",subject:"व्याकरण",marks:3.5},
+{name:"Sudip Karki",class:"7",symbol:"B22",subject:"व्याकरण",marks:6.5},
+{name:"Supreshna Gautam",class:"7",symbol:"B23",subject:"व्याकरण",marks:15.5},
+{name:"Upendra Shrestha",class:"7",symbol:"B24",subject:"व्याकरण",marks:16.5},
+{name:"Prince Shah",class:"7",symbol:"B25",subject:"व्याकरण",marks:20.5}
+        ]
+      }
+    };
+
+
+
+
+
+
+
+
+
+    // Populate exam dropdown
+    const examSelect = document.getElementById("examSelect");
+    const examNames = Object.keys(examResults);
+    examNames.forEach((exam, i) => {
+      const opt = document.createElement("option");
+      opt.value = exam;
+      opt.textContent = exam;
+      examSelect.appendChild(opt);
+    });
+    // latest exam select default
+    examSelect.value = examNames[examNames.length - 1];
 
     function getGrade(pct) {
       return pct >= 90 ? "A+" :
@@ -158,46 +215,57 @@
              pct >= 50 ? "C+" :
              pct >= 40 ? "C" :
              pct >= 35 ? "D" : "NG";
-    }
+ 
 
+
+   }
     function getRemarks(grade) {
       switch (grade) {
         case "A+": return "Excellent / पढाइ, बुझाइ र सिकाइ अति उत्तम छ यस्तै प्रगति गर्दै जानु शुभकामना !";
         case "A": return "Very Good / पढाइ, बुझाइ र सिकाइ धेरै राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";
         case "B+": return "Good / पढाइ, बुझाइ र सिकाइ राम्रो छ अझै प्रगति गर्दै जानु शुभकामना !";
         case "B": return "Satisfactory / पढाइ, बुझाइ र सिकाइ सन्तोषजनक छ अझै मिहिनेत गरेर सुधार गर्दै जानु शुभकामना !";
-        case "C+": return "Average / पढाइ, बुझाइ र सिकाइ ठिक्कै मात्र राम्रो छ सुधार गर्नुपर्ने धेरै छन् अझै मिहिनेत गर्दै जानु";
-        case "C": return "Below Average / पढाइ, बुझाइ र सिकाइ अलिक कमजोर छ अझै धेरै सुधार गर्नुपर्ने भएकाले मिहिनेत गर्दै जानु";
-        case "D": return "Weak / पढाइ, बुझाइ र सिकाइ निक्कै कमजोर देखिएको हुँदा कक्षामा ध्यान दिने र मिहिनेत गर्दै जाँदा सुधार हुन्दैजान्छ";
-        default: return "❌Needs Improvement / पढाइ, बुझाइ र सिकाइ अत्यन्तै कमजोर भएकाले पढाइको धेरै भन्दा धेरै जरुरी छ मिहिनेतका साथ अध्ययन गर्नुपर्छ";
+        case "C+": return "Average / पढाइ, बुझाइ र सिकाइ ठिक्कै मात्र राम्रो छ सुधार गर्नुपर्ने धेरै छन् अझै मिहिनेत गर्दै जानु I";
+        case "C": return "Below Average / पढाइ, बुझाइ र सिकाइ अलिक कमजोर छ अझै धेरै सुधार गर्नुपर्ने भएकाले मिहिनेत गर्दै जानु I";
+        case "D": return "Weak / पढाइ, बुझाइ र सिकाइ निक्कै कमजोर देखिएको हुँदा कक्षामा ध्यान दिने र मिहिनेत गर्दै जाँदा सुधार हुन्दैजान्छ I";
+        default: return "❌Needs Improvement❌/ पढाइ, बुझाइ र सिकाइ अत्यन्तै कमजोर भएकाले पढाइको धेरै भन्दा धेरै जरुरी छ मिहिनेतका साथ अध्ययन गर्नुपर्छ I";
       }
     }
+
+
 
     function checkResult() {
       const nameInput = document.getElementById("name").value.trim().toLowerCase();
       const symbolInput = document.getElementById("symbol").value.trim().toLowerCase();
+      const selectedExam = examSelect.value;
       const resultBox = document.getElementById("resultBox");
       const marksBox = document.getElementById("marksBox");
 
-      const student = studentResults.find(s =>
+      const examData = examResults[selectedExam];
+      const student = examData.students.find(s =>
         s.name.toLowerCase() === nameInput && s.symbol.toLowerCase() === symbolInput
       );
 
       if (student) {
-        const percentage = (student.marks / examFullMarks) * 100;
+        const percentage = (student.marks / examData.fullMarks) * 100;
         const grade = getGrade(percentage);
         const remarks = getRemarks(grade);
 
         resultBox.innerHTML = `
+          <strong>Exam:</strong> ${selectedExam}<br>
           <strong>Student:</strong> ${student.name}<br>
           <strong>Class:</strong> ${student.class}<br>
           <strong>Symbol No:</strong> ${student.symbol}<br>
           <strong>Subject:</strong> ${student.subject}<br>
           <strong>Grade:</strong> ${grade}<br><br>
           <strong>Remarks:</strong> ${remarks}<br><br>
-          ${grade === "NG" ? "<span style='color:red;'>निरन्तरता नै सफलताको कसी हो, फेरी प्रयास गर्नु तिम्रो ठूलो उपलब्धि हो </span>" :
-          `<button onclick='viewMarks(${student.marks})'>📑View Your Marks</button>`}
+
+
+
+      ${grade === "NG" ? `<span><strong style="color:black;">${student.name}</strong> <span style="color:red;">तिम्रो निरन्तर प्रयास नै तिम्रा लागि सफलताको कसी हो, फेरी प्रयास गर्नु तिम्रो सबैभन्दा ठूलो उपलब्धि हो I</span> <span style="color:blue;">- Brp Sir</span></span>` :
+`<button onclick='viewMarks(${student.marks}, ${examData.fullMarks})'>📑View Your Marks</button>`}
         `;
+
 
         marksBox.style.display = "none";
         marksBox.innerHTML = "";
@@ -207,9 +275,9 @@
       }
     }
 
-    function viewMarks(marks) {
+    function viewMarks(marks, fullMarks) {
       const marksBox = document.getElementById("marksBox");
-      marksBox.innerHTML = `<h4>📑 Marks Obtained:</h4><strong>${marks} / ${examFullMarks}</strong>`;
+      marksBox.innerHTML = `<h4>📑 Marks Obtained:</h4><strong>${marks} / ${fullMarks}</strong>`;
       marksBox.style.display = "block";
     }
 
@@ -224,9 +292,7 @@
       }
     });
 
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
   </script>
 </body>
 </html>
