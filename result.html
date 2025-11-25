@@ -38,10 +38,6 @@
       transition: 0.3s;
     }
     button:hover { background-color: #45a049; }
-   
-
- 
-   
     #resultBox {
       margin-top: 20px;
       text-align: left;
@@ -121,13 +117,13 @@
     <input type="text" id="name" placeholder="Enter Student Name" />
     <input type="text" id="symbol" placeholder="Enter Symbol Number" />
     <select id="examSelect"></select>
+    <select id="subjectSelect">
+      <option value="">Select Subject</option>
+    </select>
     <button onclick="checkResult()">Check Result</button>
     <div id="resultBox"></div>
     <div class="marks-box" id="marksBox"></div>
- 
 
-
- 
     <div class="footer">
       <hr>
       Designed by: <strong>
@@ -141,14 +137,12 @@
 
 
 
-    <script>
-    // Exam-wise data
+  <script>
     const examResults = {
       "First Term Test": {
         fullMarks: 20,
         students: [
-
-{name:"Aarohi Sharma",class:"7",symbol:"b1",subject:"व्याकरण",marks:4.5},
+         {name:"Aarohi Sharma",class:"7",symbol:"b1",subject:"व्याकरण",marks:4.5},
 {name:"Angat Chaudhary",class:"7",symbol:"b2",subject:"व्याकरण",marks:6.5},
 {name:"Ankit Majhi",class:"7",symbol:"b3",subject:"व्याकरण",marks:1.5},
 {name:"Ankita Poudel",class:"7",symbol:"b4",subject:"व्याकरण",marks:18.5},
@@ -173,8 +167,6 @@
 {name:"Supreshna Gautam",class:"7",symbol:"b23",subject:"व्याकरण",marks:11},
 {name:"Upendra Shrestha",class:"7",symbol:"b24",subject:"व्याकरण",marks:8.5},
 {name:"Prince Shah",class:"7",symbol:"b25",subject:"व्याकरण",marks:15.5},
-
-
   { name: "Aaditya Acharya", class: "7", symbol: "J1", subject: "व्याकरण", marks: 8 },
   { name: "Aakash Bhagat", class: "7", symbol: "J2", subject: "व्याकरण", marks: 13 },
   { name: "Aasma Bhagat", class: "7", symbol: "J3", subject: "व्याकरण", marks: 5.5 },
@@ -200,11 +192,9 @@
   { name: "Solabh Khawas", class: "7", symbol: "J23", subject: "व्याकरण", marks: 11.5 },
   { name: "Sonakshi Dutta", class: "7", symbol: "J24", subject: "व्याकरण", marks: 17.5 },
   { name: "Utsab Thakur", class: "7", symbol: "J25", subject: "व्याकरण", marks: 9.5 },
-  { name: "Yunika Shrestha", class: "7", symbol: "J26", subject: "व्याकरण", marks: 15.5 }
-       
+  { name: "Yunika Shrestha", class: "7", symbol: "J26", subject: "व्याकरण", marks: 15.5 }      
         ]
       },
-
 
 
 
@@ -212,7 +202,7 @@
       "Second Term Test": {
         fullMarks: 30,
         students: [
-       {name:"Aarohi Sharma",class:"7",symbol:"B1",subject:"व्याकरण",marks:4.5},
+            {name:"Aarohi Sharma",class:"7",symbol:"B1",subject:"व्याकरण",marks:4.5},
 {name:"Angat Chaudhary",class:"7",symbol:"B2",subject:"व्याकरण",marks:6.5},
 {name:"Ankit Majhi",class:"7",symbol:"B3",subject:"व्याकरण",marks:1},
 {name:"Ankita Poudel",class:"7",symbol:"B4",subject:"व्याकरण",marks:25},
@@ -237,8 +227,6 @@
 {name:"Supreshna Gautam",class:"7",symbol:"B23",subject:"व्याकरण",marks:15.5},
 {name:"Upendra Shrestha",class:"7",symbol:"B24",subject:"व्याकरण",marks:16.5},
 {name:"Prince Shah",class:"7",symbol:"B25",subject:"व्याकरण",marks:20.5},
-
-
  { name: "Aaditya Acharya", class: "7", symbol: "J1", subject: "व्याकरण", marks: 10 },
   { name: "Aakash Bhagat", class: "7", symbol: "J2", subject: "व्याकरण", marks: 8 },
   { name: "Aasma Bhagat", class: "7", symbol: "J3", subject: "व्याकरण", marks: 10.5 },
@@ -266,6 +254,39 @@
   { name: "Utsab Thakur", class: "7", symbol: "J25", subject: "व्याकरण", marks: 10 },
   { name: "Yunika Shrestha", class: "7", symbol: "J26", subject: "व्याकरण", marks: 19.5 }
         ]
+    },
+
+
+
+   "Third Term Test": {
+        fullMarks: 20,
+        students: [
+{name:"Aarohi Sharma",class:"7",symbol:"B1",subject:"सामाजिक अध्ययन",marks:5},
+{name:"Angat Chaudhary",class:"7",symbol:"B2",subject:"सामाजिक अध्ययन",marks:4.5},
+{name:"Ankit Majhi",class:"7",symbol:"B3",subject:"सामाजिक अध्ययन",marks:0},
+{name:"Ankita Poudel",class:"7",symbol:"B4",subject:"सामाजिक अध्ययन",marks:17},
+{name:"Anuska Bhandari",class:"7",symbol:"B5",subject:"सामाजिक अध्ययन",marks:12},
+{name:"Asmi Rana Magar",class:"7",symbol:"B6",subject:"सामाजिक अध्ययन",marks:11.5},
+{name:"Bandana Niroula",class:"7",symbol:"B7",subject:"सामाजिक अध्ययन",marks:15},
+{name:"Hemanta Mehata",class:"7",symbol:"B8",subject:"सामाजिक अध्ययन",marks:4},
+{name:"Jenisha Chaudhary",class:"7",symbol:"B9",subject:"सामाजिक अध्ययन",marks:11.5},
+{name:"Kelina Dhakal",class:"7",symbol:"B10",subject:"सामाजिक अध्ययन",marks:9},
+{name:"Khushi Khadka",class:"7",symbol:"B11",subject:"सामाजिक अध्ययन",marks:15},
+{name:"Manoj B.K",class:"7",symbol:"B12",subject:"सामाजिक अध्ययन",marks:2},
+{name:"Namrata Chaudhary",class:"7",symbol:"B13",subject:"सामाजिक अध्ययन",marks:6.5},
+{name:"Prakriti Pradhan",class:"7",symbol:"B14",subject:"सामाजिक अध्ययन",marks:0.5},
+{name:"Pramisha Khawas",class:"7",symbol:"B15",subject:"सामाजिक अध्ययन",marks:6.5},
+{name:"Rakesh Khawas",class:"7",symbol:"B16",subject:"सामाजिक अध्ययन",marks:10},
+{name:"Rohan Baral",class:"7",symbol:"B17",subject:"सामाजिक अध्ययन",marks:0},
+{name:"Sandesh Regmi",class:"7",symbol:"B18",subject:"सामाजिक अध्ययन",marks:15},
+{name:"Simran B.K",class:"7",symbol:"B19",subject:"सामाजिक अध्ययन",marks:7},
+{name:"Smriti Khawas",class:"7",symbol:"B20",subject:"सामाजिक अध्ययन",marks:10},
+{name:"Smriti Majhi",class:"7",symbol:"B21",subject:"सामाजिक अध्ययन",marks:3.5},
+{name:"Sudip Karki",class:"7",symbol:"B22",subject:"सामाजिक अध्ययन",marks:6.5},
+{name:"Supreshna Gautam",class:"7",symbol:"B23",subject:"सामाजिक अध्ययन",marks:9},
+{name:"Upendra Shrestha",class:"7",symbol:"B24",subject:"सामाजिक अध्ययन",marks:9},
+{name:"Prince Shah",class:"7",symbol:"B25",subject:"सामाजिक अध्ययन",marks:13}
+    ]
       }
     };
 
@@ -273,9 +294,10 @@
 
 
 
+    const examSelect = document.getElementById("examSelect");
+    const subjectSelect = document.getElementById("subjectSelect");
 
     // Populate exam dropdown
-    const examSelect = document.getElementById("examSelect");
     const examNames = Object.keys(examResults);
     examNames.forEach(exam => {
       const opt = document.createElement("option");
@@ -284,6 +306,24 @@
       examSelect.appendChild(opt);
     });
     examSelect.value = examNames[examNames.length - 1];
+
+
+
+
+    // Populate subjects when exam changes
+    examSelect.addEventListener("change", () => {
+      const selectedExam = examSelect.value;
+      subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+      if(selectedExam && examResults[selectedExam]) {
+        const subjects = [...new Set(examResults[selectedExam].students.map(s => s.subject))];
+        subjects.forEach(sub => {
+          const opt = document.createElement("option");
+          opt.value = sub;
+          opt.textContent = sub;
+          subjectSelect.appendChild(opt);
+        });
+      }
+    });
 
     function getGrade(pct) {
       return pct >= 90 ? "A+" :
@@ -295,11 +335,7 @@
              pct >= 35 ? "D" : "NG";
     }
 
-
-
-
-
- function getRemarks(grade) {
+    function getRemarks(grade) {
       switch (grade) {
         case "A+": return "Excellent 🌟 पढाइ, बुझाइ र सिकाइ अति उत्तम छ I यस्तै प्रगति गर्दै जानु शुभकामना !";
         case "A": return "Very Good 👍 पढाइ, बुझाइ र सिकाइ धेरै राम्रो छ I अझै प्रगति गर्दै जानु शुभकामना !";
@@ -314,26 +350,34 @@
 
 
 
-
-
-
-
     function checkResult() {
       const nameInput = document.getElementById("name").value.trim().toLowerCase();
       const symbolInput = document.getElementById("symbol").value.trim().toLowerCase();
       const selectedExam = examSelect.value;
+      const selectedSubject = subjectSelect.value;
       const resultBox = document.getElementById("resultBox");
       const marksBox = document.getElementById("marksBox");
 
+      if(!selectedSubject) {
+        alert("Please select a subject!");
+        return;
+      }
+
       const examData = examResults[selectedExam];
       const student = examData.students.find(s =>
-        s.name.toLowerCase() === nameInput && s.symbol.toLowerCase() === symbolInput
+        s.name.toLowerCase() === nameInput &&
+        s.symbol.toLowerCase() === symbolInput &&
+        s.subject === selectedSubject
       );
+
+
 
       if (student) {
         const percentage = (student.marks / examData.fullMarks) * 100;
         const grade = getGrade(percentage);
         const remarks = getRemarks(grade);
+
+
 
 
 
@@ -349,10 +393,7 @@
           <div class="progress">
             <div class="progress-bar" style="width:${percentage}%"></div>
           </div>
-        
-
-
-  <p><strong>Remarks:</strong> ${remarks}</p>
+          <p><strong>Remarks:</strong> ${remarks}</p>
           ${grade === "NG" 
             ? `<p style="color:yellow;"><strong>${student.name}</strong>💪तिम्रो निरन्तर प्रयास नै तिम्रा लागि सफलताको कसी हो, फेरी प्रयास गर्नु तिम्रो सबैभन्दा ठूलो उपलब्धि हो I</span> <span style="color:white; font-weight:bold; font-size:20px;">- Brp Sir</span></span>
            ` : `<button onclick='viewMarks(${student.marks}, ${examData.fullMarks})'>📑 View Your Marks</button>`}`;
@@ -362,7 +403,7 @@
         marksBox.style.display = "none";
         marksBox.innerHTML = "";
       } else {
-        resultBox.innerHTML = "<span class='notfound'>❌ Student not found. Please check name and symbol no. ❌</span>";
+        resultBox.innerHTML = "<span class='notfound'>❌ Student not found. Please check name, symbol no. and subject ❌</span>";
         marksBox.style.display = "none";
       }
     }
@@ -384,6 +425,9 @@
       }
     });
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+    // Populate subjects initially
+    examSelect.dispatchEvent(new Event('change'));
   </script>
 </body>
 </html>
